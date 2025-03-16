@@ -16,7 +16,7 @@ describe(`Function 'validateEmail':`, () => {
       .toBeTruthy();
   });
   it(`should return 'false' if email doesn't contain English letters (Aa-Zz)`, () => {
-    expect(validateEmail('тест838@gmail.com.'))
+    expect(validateEmail('тестлап838@gmail.com.'))
       .toBeFalsy();
   });
   it(`should return 'true' if email contains digits`, () => {
@@ -47,12 +47,14 @@ describe(`Function 'validateEmail':`, () => {
     expect(validateEmail('testgmail.com.'))
       .toBeFalsy();
   });
-  it(`should return 'false' if email doesn't contain @`, () => {
-    expect(validateEmail('testgmail.com.'))
-      .toBeFalsy();
-  });
   it(`should return 'false' if email contains '! $ % & ' * + / = ? ^ { | } ~'`, () => {
     expect(validateEmail('te!$stgmail.com.'))
+      .toBeFalsy();
+  });
+  it(`should return 'false' if personal_info and domain start with dot .`, () => {
+    expect(validateEmail('test.@gmail.com.'))
+      .toBeFalsy();
+    expect(validateEmail('.test@gmail.com.'))
       .toBeFalsy();
   });
 });
